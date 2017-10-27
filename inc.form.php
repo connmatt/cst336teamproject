@@ -1,4 +1,23 @@
 <?php
+
+include 'dbconnection.php';
+
+$dbConn = getConnection();
+
+function displayData(){
+  global $dbConn;
+  
+  $sql = "SELECT * FROM `movie` WHERE 1";
+  
+  $stmt = $dbConn->prepare($sql);
+  $stmt->execute();
+  $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  foreach($records as $record){
+    echo $record['movie_title'] . " ". $record['movie_category'] . " " . $record['release_year'];
+    echo "<br />";
+  }
+}
   function submit(){
     if (isset($_GET['submit'])) {
       $movieTitle = $_GET['movieTitle'];
@@ -47,6 +66,7 @@
     </form>
     <?php
     submit();
+    displayData();
     ?>
   </div>
 </body>
