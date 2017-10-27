@@ -1,13 +1,5 @@
 <?php
-  function submit(){
-    if (isset($_GET['submit'])) {
-      $movieTitle = $_GET['movieTitle'];
-      $celeb = $_GET['celeb'];
-      $format = $_GET['format'];
-      echo "Movie Title: " . $movieTitle . "<br>Celeb Name: " . $celeb . "<br>Type of Format: " . $format . "<br>";
-      echo "IT WORKED!!!";
-    }    
-}
+  include 'dbConnections.php';
 
 ?>
 
@@ -46,7 +38,6 @@
       <input type="submit" value="Checkout" name="submit" />
     </form>
     <?php
-    submit();
     ?>
   </div>
 </body>
