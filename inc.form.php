@@ -4,6 +4,39 @@ include 'dbconnection.php';
 
 $dbConn = getConnection();
 
+function getFormats(){
+  global $dbConn;
+  $sql = "SELECT DISTINCT(format_type)
+          FROM `formats`
+          ORDER BY format_type";
+          
+  $stmt = $dbConn->prepare($sql);
+  $stmt->execute();
+  $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  foreach ($records as $record){
+    echo "<option>" . $record['format_type'] . "</option>";
+  }
+}
+
+
+function getGenre(){
+  global $dbConn;
+  $sql = "SELECT DISTINCT(movie_category)
+          FROM `movie`
+          ORDER BY movie_category";
+          
+  $stmt = $dbConn->prepare($sql);
+  $stmt->execute();
+  $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  foreach ($records as $record){
+    echo "<option>" . $record['movie_category'] . "</option>";
+  }
+}
+
+
+
 function displayData(){
   global $dbConn;
   
@@ -16,6 +49,7 @@ function displayData(){
   foreach($records as $record){
     echo $record['movie_title'] . " ". $record['movie_category'] . " " . $record['release_year'];
     echo "<br />";
+    
   }
 }
   function submit(){
@@ -46,20 +80,18 @@ function displayData(){
       <input type="text" name="movieTitle" placeholder="Movie Title" />
       <br /><br />
       
-      Celebrity:
-      <select name="celeb">
-        <option value="all">All</option>
-        <option value="1">Celeb 1</option>
-        <option value="2">Celeb 2</option>
-        <option value="3">Celeb 3</option>
-        <option value="4">Celeb 4</option>
+      Genre:
+      <select name="genre">
+        <option>Select Genre</option>
+        <?=getGenre()?>
       </select>
       <br /><br />
       
       Format Type:
-      <input type="radio" name="format" value="any"> Any
-      <input type="radio" name="format" value="bRay"> Blue Ray
-      <input type="radio" name="format" value="digital"> Digital
+      <select name="format_type">
+        <option> Select Format</option>
+        <?=getFormats()?>
+      </select>
       <br /><br />
       
       <input type="submit" value="Checkout" name="submit" />
