@@ -53,14 +53,39 @@ function displayData(){
   }
 }
   function submit(){
+    global $dbConn;
     if (isset($_GET['submit'])) {
       $movieTitle = $_GET['movieTitle'];
-      $celeb = $_GET['celeb'];
+      $celeb = $_GET['genre'];
       $format = $_GET['format'];
-      echo "Movie Title: " . $movieTitle . "<br>Celeb Name: " . $celeb . "<br>Type of Format: " . $format . "<br>";
-      echo "IT WORKED!!!";
+      
+      if ($format == "Blueray")
+      {
+        
+        $sql = "SELECT movie.movie_title, movie.movie_category, movie.duration
+                FROM  `movie` 
+                WHERE movie.release_year >=2006
+                LIMIT 0 , 30";
+        
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute();
+        $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($records as $record){
+          
+           echo $record['movie_title'] . " ". $record['movie_category'];
+           echo "<br />";
+           
+          
+        }
+      }
+      
+      // echo "Movie Title: " . $movieTitle . "<br>Celeb Name: " . $celeb . "<br>Type of Format: " . $format . "<br>";
+      // echo "IT WORKED!!!";
     }    
 }
+
+
 
 ?>
 
@@ -88,7 +113,7 @@ function displayData(){
       <br /><br />
       
       Format Type:
-      <select name="format_type">
+      <select name="format">
         <option> Select Format</option>
         <?=getFormats()?>
       </select>
@@ -98,7 +123,7 @@ function displayData(){
     </form>
     <?php
     submit();
-    displayData();
+    //displayData();
     ?>
   </div>
 </body>
