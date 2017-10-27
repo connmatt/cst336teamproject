@@ -1,6 +1,33 @@
 <?php
   include 'dbConnections.php';
 
+  $dbConn = getConnection();
+
+  function displayData(){
+    global $dbConn;
+  
+    $sql = "SELECT * FROM `movie` WHERE 1";
+    
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute();
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach($records as $record){
+      echo $record['movie_title'] . " ". $record['movie_category'] . " " . $record['release_year'];
+      echo "<br />";
+    }
+}
+  function submit(){
+    global $dbConn;
+    
+    $sql = "SELECT * FROM device WHERE 1 ";
+    
+    if (isset($_GET['submit'])) {
+      $movieTitle = $_GET['movieTitle'];
+      $celeb = $_GET['celeb'];
+      $format = $_GET['format'];
+    }    
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +65,8 @@
       <input type="submit" value="Checkout" name="submit" />
     </form>
     <?php
+    submit();
+    displayData();
     ?>
   </div>
 </body>
