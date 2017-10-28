@@ -2,12 +2,15 @@ head,html{
     
     color:white;
     top:10px;
-    font-size: 25px;
+    font-size: 35px;
     padding-top: 3%;
     padding-bottom: 6%;
     padding-left: 40px;
     left:100px;
-    
+}
+tr, th, td{
+    border: 2px solid white;
+    left:200px;
 }
 h1{
     
@@ -16,9 +19,9 @@ h1{
 body{
     background-image: url("../css/cinema.jpg");
     position: absolute;
-    color: white;
-    left: 600px;
-    top: 90px;
+    color: yellow;
+    left: 700px;
+    top: 10px;
     font-size: 19px;
 }
 

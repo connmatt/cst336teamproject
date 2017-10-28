@@ -66,8 +66,6 @@
   function submit(){
     global $dbConn;
     
-    $sql = "SELECT * FROM device WHERE 1 ";
-    
     if (isset($_GET['submit'])) {
       $movieTitle = $_GET['movieTitle'];
       $celeb = $_GET['celeb'];
@@ -83,11 +81,7 @@
 <head>
   <meta charset="utf-8">
   <title>Movie Search Engine</title>
-<<<<<<< HEAD
   <link href="css/style.css" rel="stylesheet" type="text/css" />
-=======
-  <link rel="stylesheet" href="css/styles.css" type="text/css" />
->>>>>>> 215d8f83f9626392f1dd90bf3afe030528bbc783
 </head>
 <body>
   <div id="wrapper">
