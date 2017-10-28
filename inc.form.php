@@ -1,5 +1,5 @@
 <?php
-  include 'dbConnections.php';
+  include 'dbconnection.php';
   $dbConn = getConnection();
     
   //Displaying the data
@@ -24,7 +24,87 @@
     foreach($records as $record){
       $counter = $record['movie_id'];
       echo"<tr>";
-      echo "<td>" . $record['movie_title'] . "</td>";
+      //echo "<td>" . $record['movie_title'] . "</td>";
+      if ($record['movie_title'] == "Get Out")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt5052448/'>Get Out</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Fault in Our Stars")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2582846/'>The Fault in Our Stars</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Avatar")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0499549/'>Avatar</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Deadpool")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1431045/'>Deadpool</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Batman")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0096895/'>Batman</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Notebook")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0332280/'>The Notebook</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Spider Man Homecoming")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2250912/'>Spider Man Homecoming</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Euro Trip")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0356150/'>Euro Trip</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Nightmare Before Christmas")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0107688/'>The Nightmare Before Christmas</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Halloween")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0077651/?ref_=nv_sr_3'>Halloween</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Alien")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0078748/'>Alien</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Pacific Rim")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1663662/?ref_=nv_sr_2'>Pacific Rim</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Hangover")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1119646/'>The Hangover</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Friday")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0113118/?ref_=fn_al_tt_1'>Friday</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Equalizer")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0455944/?ref_=nv_sr_2'>The Equalizer</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Inception")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1375666/?ref_=nv_sr_1'>Inception</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "John Wick")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2911666/'>John Wick</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Kindergarten Cop")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0099938/'>Kindergarten Cop</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "In the Blood")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2101570/'>In the Blood</a></td></td>";
+      }
+      if ($record['movie_title'] == "A Walk to Remember")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0281358/'>A Walk to Remember</a></td></td>";
+      }
       echo "<td>" . $record['movie_category'] . "</td>";
       echo "<td>" . $record['release_year'] . "</td>";
       echo "<td><input type='checkbox' name='cart' value'$counter'/>$counter</td> ";
@@ -74,32 +154,6 @@
       $movieTitle = $_GET['movieTitle'];
       $celeb = $_GET['genre'];
       $format = $_GET['format'];
-<<<<<<< HEAD
-      
-      if ($format == "Blueray")
-      {
-        
-        $sql = "SELECT movie.movie_title, movie.movie_category, movie.duration
-                FROM  `movie` 
-                WHERE movie.release_year >=2006
-                LIMIT 0 , 30";
-        
-        $stmt = $dbConn->prepare($sql);
-        $stmt->execute();
-        $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        foreach($records as $record){
-          
-           echo $record['movie_title'] . " ". $record['movie_category'];
-           echo "<br />";
-           
-          
-        }
-      }
-      
-      // echo "Movie Title: " . $movieTitle . "<br>Celeb Name: " . $celeb . "<br>Type of Format: " . $format . "<br>";
-      // echo "IT WORKED!!!";
-=======
       $filter = $_GET['filter'];
       $temp = "";
       $filterStatus = false;
@@ -132,7 +186,6 @@
         }
       }
       
->>>>>>> 0ed028cbb016f696e544c0d2fe39e994e53d084d
     }    
 }
 
@@ -152,30 +205,19 @@
   <div id="wrapper">
     <h1>Movie Search Engine</h1>
     <form method='get'>
-      <h3>Search through the following methods:</h3>
-      
-      Movie Title:
-      <input type="text" name="movieTitle" placeholder="Movie Title" />
-      <br /><br />
-      
-      Genre:
-      <select name="genre">
-      <option>Select Genre</option>
-      <?=getGenre()?>
-      </select>
-      <br /><br />
-      
-      Format Type:
-      <select name="format">
-        <option> Select Format</option>
-        <?=getFormats()?>
-      </select>
-      <br /><br />
+      <h3>Filter through the following methods:</h3>
       
       Filter by Type:
       <input type="radio" name="filter" value="title" /> Movie Title
       <input type="radio" name="filter" value="genre" /> Genre
       <input type="radio" name="filter" value="year" /> Year Released
+      <br>
+      
+      Organize By:
+      <select name="organize">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
       
       <input type="submit" value="Go" name="submit" />
     </form>
