@@ -16,6 +16,7 @@
 <head>
   <meta charset="utf-8">
   <title>Movie Search Engine</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div>

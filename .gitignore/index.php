@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,3 +37,33 @@
             }
             
 ?>
+//stylesheet
+head,html{
+    
+    color:white;
+    top:10px;
+    font-size: 25px;
+    padding-top: 3%;
+    padding-bottom: 6%;
+    padding-left: 40px;
+    left:100px;
+    
+}
+h1{
+    
+    font-family: 'Fascinate Inline', cursive;
+}
+body{
+    background-image: url("../css/cinema.jpg");
+    position: absolute;
+    color: white;
+    left: 600px;
+    top: 90px;
+    font-size: 19px;
+}
+
+div.movies{
+    color: white;
+    position:absolute;
+    
+}
