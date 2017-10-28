@@ -5,8 +5,9 @@
   //Displaying the data
   function displayData($string){
     global $dbConn;
-
-    $sql = $string;
+    $newString = $string;
+    $sql = $newString;
+    $counter = 0;
     
     $stmt = $dbConn->prepare($sql);
     $stmt->execute();
@@ -18,12 +19,15 @@
     echo "<th><u>Movie Title</u></th>";
     echo "<th><u>Genre</u></th>";
     echo "<th><u>Year Released</u></th>";
+    echo "<th><u>Add to Cart</u></th>";
     echo "</tr>";
     foreach($records as $record){
+      $counter = $record['movie_id'];
       echo"<tr>";
       echo "<td>" . $record['movie_title'] . "</td>";
       echo "<td>" . $record['movie_category'] . "</td>";
       echo "<td>" . $record['release_year'] . "</td>";
+      echo "<td><input type='checkbox' name='cart' value'$counter'/>$counter</td> ";
       echo "</tr>";
     }
     echo "</tbody>";
@@ -71,6 +75,36 @@
       $celeb = $_GET['celeb'];
       $format = $_GET['format'];
       $filter = $_GET['filter'];
+      $temp = "";
+      $filterStatus = false;
+      
+      if(!empty($_GET['filter'])){
+        $filterStatus = true;
+      }
+      else{
+        $filterStatus = false;
+      }
+      
+      if ($filterStatus == true){
+        if ($filter == 'title'){
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id
+                   FROM movie
+                   ORDER BY movie_title DESC";
+          displayData($temp);
+        }
+        else if($filter == 'genre'){
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id
+                   FROM movie
+                   ORDER BY movie_category DESC";
+          displayData($temp);
+        }
+        else if($filter == 'year'){
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id
+                   FROM movie
+                   ORDER BY release_year DESC";
+          displayData($temp);
+        }
+      }
       
     }    
   }
@@ -115,7 +149,7 @@
       <input type="submit" value="Go" name="submit" />
     </form>
     <?php
-    displayData("SELECT * FROM `movie` WHERE 1");
+    //displayData("SELECT * FROM `movie` WHERE 1");
     submit();
     ?>
   </div>
