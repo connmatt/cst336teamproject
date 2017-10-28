@@ -9,6 +9,9 @@ head,html{
     left:100px;
     
 }
+tr, th, td{
+    border: 2px solid white;
+}
 h1{
     
     font-family: 'Fascinate Inline', cursive;
