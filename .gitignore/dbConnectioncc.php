@@ -1,10 +1,13 @@
 <?php
+
+
 function getConnection(){
     
-    $host = 'localhost';
-    $dbname = 'blockbuster';
-    $username = 'tinoco86';
-    $password = 'cstmyphp336';
+            $dbHost = getenv('IP');
+            $dbPort = 3306;
+            $dbName = "blockbuster";
+            $username = 'root';
+            $password = "";
     
     //creates db connection
     $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -15,4 +18,3 @@ function getConnection(){
     return $dbConn;
 }
 ?>
-

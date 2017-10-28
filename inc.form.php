@@ -1,5 +1,5 @@
 <?php
-  include 'dbConnections.php';
+  include 'dbconnection.php';
   $dbConn = getConnection();
     
   //Displaying the data
@@ -24,7 +24,87 @@
     foreach($records as $record){
       $counter = $record['movie_id'];
       echo"<tr>";
-      echo "<td>" . $record['movie_title'] . "</td>";
+      //echo "<td>" . $record['movie_title'] . "</td>";
+      if ($record['movie_title'] == "Get Out")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt5052448/'>Get Out</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Fault in Our Stars")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2582846/'>The Fault in Our Stars</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Avatar")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0499549/'>Avatar</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Deadpool")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1431045/'>Deadpool</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Batman")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0096895/'>Batman</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Notebook")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0332280/'>The Notebook</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Spider Man Homecoming")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2250912/'>Spider Man Homecoming</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Euro Trip")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0356150/'>Euro Trip</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Nightmare Before Christmas")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0107688/'>The Nightmare Before Christmas</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Halloween")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0077651/?ref_=nv_sr_3'>Halloween</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Alien")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0078748/'>Alien</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Pacific Rim")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1663662/?ref_=nv_sr_2'>Pacific Rim</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Hangover")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1119646/'>The Hangover</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Friday")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0113118/?ref_=fn_al_tt_1'>Friday</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "The Equalizer")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0455944/?ref_=nv_sr_2'>The Equalizer</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Inception")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt1375666/?ref_=nv_sr_1'>Inception</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "John Wick")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2911666/'>John Wick</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "Kindergarten Cop")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0099938/'>Kindergarten Cop</a></td></td>"; 
+      }
+      if ($record['movie_title'] == "In the Blood")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt2101570/'>In the Blood</a></td></td>";
+      }
+      if ($record['movie_title'] == "A Walk to Remember")
+      {
+        echo "<td><a href='http://www.imdb.com/title/tt0281358/'>A Walk to Remember</a></td></td>";
+      }
       echo "<td>" . $record['movie_category'] . "</td>";
       echo "<td>" . $record['release_year'] . "</td>";
       echo "<td><input type='checkbox' name='cart' value'$counter'/>$counter</td> ";
@@ -40,7 +120,7 @@
     
     if (isset($_GET['submit'])) {
       $movieTitle = $_GET['movieTitle'];
-      $celeb = $_GET['celeb'];
+      $celeb = $_GET['genre'];
       $format = $_GET['format'];
       $filter = $_GET['filter'];
       $organize = $_GET['organize'];
@@ -83,8 +163,11 @@
       }
       
     }    
-  }
-  ?>
+}
+
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -92,6 +175,7 @@
   <meta charset="utf-8">
   <title>Movie Search Engine</title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline" rel="stylesheet">
 </head>
 <body>
   <div id="wrapper">
@@ -116,6 +200,7 @@
     <?php
     //displayData("SELECT * FROM `movie` WHERE 1");
     submit();
+    //displayData();
     ?>
   </div>
 </body>
