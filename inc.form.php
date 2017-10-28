@@ -72,6 +72,8 @@
       $movieTitle = $_GET['movieTitle'];
       $celeb = $_GET['celeb'];
       $format = $_GET['format'];
+      $filter = $_GET['filter'];
+      
     }    
   }
   ?>
@@ -81,9 +83,10 @@
 <head>
   <meta charset="utf-8">
   <title>Movie Search Engine</title>
+  <link rel="stylesheet" href="css/styles.css" type="text/css" />
 </head>
 <body>
-  <div>
+  <div id="wrapper">
     <h1>Movie Search Engine</h1>
     <form method='get'>
       <h3>Search through the following methods:</h3>
@@ -106,7 +109,12 @@
       </select>
       <br /><br />
       
-      <input type="submit" value="Checkout" name="submit" />
+      Filter by Type:
+      <input type="radio" name="filter" value="title" /> Movie Title
+      <input type="radio" name="filter" value="genre" /> Genre
+      <input type="radio" name="filter" value="year" /> Year Released
+      
+      <input type="submit" value="Go" name="submit" />
     </form>
     <?php
     displayData("SELECT * FROM `movie` WHERE 1");
