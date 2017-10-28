@@ -65,17 +65,13 @@
   //Determine how to display after hitting the submit button
   function submit(){
     global $dbConn;
-<<<<<<< HEAD
-=======
     
     $sql = "SELECT * FROM device WHERE 1 ";
     
->>>>>>> eab3fcfee824d3af4a88899c8ed66a49a1e27e27
     if (isset($_GET['submit'])) {
       $movieTitle = $_GET['movieTitle'];
       $celeb = $_GET['genre'];
       $format = $_GET['format'];
-<<<<<<< HEAD
       
       if ($format == "Blueray")
       {
@@ -106,11 +102,6 @@
 
 
 ?>
-=======
-    }    
-  }
-  ?>
->>>>>>> eab3fcfee824d3af4a88899c8ed66a49a1e27e27
 
 <!DOCTYPE html>
 <html>
@@ -136,15 +127,9 @@
       <br /><br />
       
       Format Type:
-<<<<<<< HEAD
       <select name="format">
         <option> Select Format</option>
         <?=getFormats()?>
-=======
-      <select name="format_type">
-      <option> Select Format</option>
-      <?=getFormats()?>
->>>>>>> eab3fcfee824d3af4a88899c8ed66a49a1e27e27
       </select>
       <br /><br />
       
@@ -153,10 +138,7 @@
     <?php
     displayData("SELECT * FROM `movie` WHERE 1");
     submit();
-<<<<<<< HEAD
     //displayData();
-=======
->>>>>>> eab3fcfee824d3af4a88899c8ed66a49a1e27e27
     ?>
   </div>
 </body>
