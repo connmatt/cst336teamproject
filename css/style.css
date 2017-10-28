@@ -16,8 +16,10 @@ tr, th, td{
     border: 2px solid white;
 }
 h1{
-    
+    color:white;
     font-family: 'Fascinate Inline', cursive;
+    font-size:46px;
+    left:150px;
 }
 body{
     background-image: url("../css/cinema.jpg");

@@ -116,6 +116,7 @@
   <meta charset="utf-8">
   <title>Movie Search Engine</title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline" rel="stylesheet">
 </head>
 <body>
   <div id="wrapper">
