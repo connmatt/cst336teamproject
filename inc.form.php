@@ -187,6 +187,7 @@
       <input type="radio" name="filter" value="title" /> Movie Title
       <input type="radio" name="filter" value="genre" /> Genre
       <input type="radio" name="filter" value="year" /> Year Released
+      <input type="radio" name="filter" value="author" /> Author
       <br>
       
       Organize By:
