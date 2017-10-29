@@ -1,16 +1,6 @@
 <?php
   include 'dbconnections.php';
   $dbConn = getConnection();
-  // session_start();
-  //   $isPostback = $_SERVER['REQUEST_METHOD'] == 'POST';
-    
-  //   if ($isPostback) {
-  //       $report = "Full Name: " . $_POST["fullName"] . "<br />" . "Subject: " . $_POST["subject"] ."<br />" . "Complaint: " . $_POST["description"];  
-  //       $_SESSION["report"] = $report;
-  //   }
-  //   else {
-  //       $_SESSION["report"] = "";
-  //   }
     
   //Displaying the data
   function displayData($string){
@@ -119,7 +109,9 @@
       echo "<td>" . $record['firstName'] . " " . $record['lastName'] ."</td>";
       echo "<td>" . $record['movie_category'] . "</td>";
       echo "<td>" . $record['release_year'] . "</td>";
-      echo "<td><input type='checkbox' name='cart' value'$counter'/>$counter</td> ";
+      ?>
+      <td> <a href="?id=<?php echo $record['movie_id'] ?>"> add </a></td>
+      <?php
       echo "</tr>";
     }
     echo "</tbody>";

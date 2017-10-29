@@ -25,7 +25,7 @@ body{
     background-image: url("../css/cinema.jpg");
     position: absolute;
     color: yellow;
-    left: 700px;
+    left: 500px;
     top: 10px;
     font-size: 19px;
 }
@@ -34,4 +34,7 @@ div.movies{
     color: white;
     position:absolute;
     
+}
+a{
+    color: yellow;
 }
