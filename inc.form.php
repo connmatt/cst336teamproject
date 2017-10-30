@@ -1,5 +1,6 @@
 <?php
   include 'dbconnections.php';
+  session_start();
   $dbConn = getConnection();
     
   //Displaying the data
@@ -109,13 +110,36 @@
       echo "<td>" . $record['firstName'] . " " . $record['lastName'] ."</td>";
       echo "<td>" . $record['movie_category'] . "</td>";
       echo "<td>" . $record['release_year'] . "</td>";
-      ?>
-      <td> <a href="?id=<?php echo $record['movie_id'] ?>"> add </a></td>
-      <?php
+      echo "<td><input type='checkbox' name='add' value='$counter'>ADD</td>$counter";
       echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
+    
+    getCart();
+  }
+  
+  function getCart(){
+    if(isset($_GET['addToCart'])){
+      $addList = array();
+      $value = $_GET['add'];
+      
+      for($i = 1; $i <= 20; $i++){
+        if(empty($_GET['add'])){
+          continue;
+        }
+        else{
+          if($value == $i){
+           array_push($addList, $value); 
+          }
+        }
+      }
+      for($i = 0; $i < count($addList); $i++){
+        echo $addList[$i];
+      }
+      
+      //$_SESSION['cart'] = $addList;
+    }
   }
 
   //Determine how to display after hitting the submit button
@@ -212,10 +236,11 @@
       </select>
       
       <input type="submit" value="Go" name="submit" />
-      <input type="submit" value="Checkout" name="checkout" />
+      To view Shopping Cart:
+      <input type="submit" value="Click Here" name="addToCart"/>
     </form>
     <?php
-    //displayData("SELECT * FROM `movie` WHERE 1");
+    //displayData("SELECT * FROM `movie`, `celebrity` WHERE movie.movie_id=celebrity.celeb_id");
     submit();
     //displayData();
     ?>
