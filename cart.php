@@ -1,5 +1,5 @@
 <?php
-    include 'inc.form.php';
+    include 'index.php';
 ?>
 <table border="1">
     <tr>
