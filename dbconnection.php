@@ -7,19 +7,17 @@ function getConnection(){
     $password = "s3cr3t";
     
     //using different database variables in Heroku
-    // if  (strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false) {
-    //     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    //     $host = $url["host"];
-    //     $dbname = substr($url["path"], 1);
-    //     $username = $url["user"];
-    //     $password = $url["pass"];
-    // } 
+    if  (strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false) {
+        $dbHost = getenv('DATABASE_HOST');
+        $dbPort = getenv('DATABASE_HOST');
+        $dbName = getenv('DATABASE_NAME');
+        $username = getenv('USERNAME');
+        $password = getenv('PASSWORD');
+   } 
     
     //creates db connection
-    $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    
-    //display errors when accessing tables
-    $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbConn = new PDO("mysql:host=$dbHost;port=$dbPort;dbname=$dbName", $username, $password);
+    $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     return $dbConn;
     
