@@ -1,5 +1,6 @@
 <?php
-  include 'dbconnection.php';
+  include 'dbconnections.php';
+  session_start();
   $dbConn = getConnection();
     
   //Displaying the data
@@ -17,6 +18,7 @@
     echo "<tbody>";
     echo "<tr>";
     echo "<th><u>Movie Title</u></th>";
+    echo "<th><u>Actor</u></th>";
     echo "<th><u>Genre</u></th>";
     echo "<th><u>Year Released</u></th>";
     echo "<th><u>Add to Cart</u></th>";
@@ -105,13 +107,39 @@
       {
         echo "<td><a href='http://www.imdb.com/title/tt0281358/'>A Walk to Remember</a></td></td>";
       }
+      echo "<td>" . $record['firstName'] . " " . $record['lastName'] ."</td>";
       echo "<td>" . $record['movie_category'] . "</td>";
       echo "<td>" . $record['release_year'] . "</td>";
-      echo "<td><input type='checkbox' name='cart' value'$counter'/>$counter</td> ";
+      echo "<td><input type='checkbox' name='add' value='$counter'>ADD</td>$counter";
       echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
+    
+    getCart();
+  }
+  
+  function getCart(){
+    if(isset($_GET['addToCart'])){
+      $addList = array();
+      $value = $_GET['add'];
+      
+      for($i = 1; $i <= 20; $i++){
+        if(empty($_GET['add'])){
+          continue;
+        }
+        else{
+          if($value == $i){
+           array_push($addList, $value); 
+          }
+        }
+      }
+      for($i = 0; $i < count($addList); $i++){
+        echo $addList[$i];
+      }
+      
+      //$_SESSION['cart'] = $addList;
+    }
   }
 
   //Determine how to display after hitting the submit button
@@ -124,6 +152,7 @@
       $format = $_GET['format'];
       $filter = $_GET['filter'];
       $organize = $_GET['organize'];
+      $actor = $_GET['actor'];
       $temp = "";
       $oTemp = "";
       $filterStatus = false;
@@ -143,20 +172,30 @@
       
       if ($filterStatus == true){
         if ($filter == 'title'){
-          $temp = "SELECT movie_title, movie_category, release_year, movie_id
-                   FROM movie
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id, firstName, lastName
+                   FROM movie, celebrity
+                   WHERE movie.movie_id=celebrity.celeb_id
                    ORDER BY movie_title " . $oTemp;
           displayData($temp);
         }
+        else if($filter == 'actor'){
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id, celebrity.firstName, celebrity.lastName
+                   FROM movie, celebrity
+                   WHERE movie.movie_id=celebrity.celeb_id
+                   ORDER BY firstName " . $oTemp;
+          displayData($temp);
+        }
         else if($filter == 'genre'){
-          $temp = "SELECT movie_title, movie_category, release_year, movie_id
-                   FROM movie
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id, firstName, lastName
+                   FROM movie, celebrity
+                   WHERE movie.movie_id=celebrity.celeb_id
                    ORDER BY movie_category " . $oTemp;
           displayData($temp);
         }
         else if($filter == 'year'){
-          $temp = "SELECT movie_title, movie_category, release_year, movie_id
-                   FROM movie
+          $temp = "SELECT movie_title, movie_category, release_year, movie_id, firstName, lastName
+                   FROM movie, celebrity
+                   WHERE movie.movie_id=celebrity.celeb_id
                    ORDER BY release_year " . $oTemp;
           displayData($temp);
         }
@@ -187,7 +226,7 @@
       <input type="radio" name="filter" value="title" /> Movie Title
       <input type="radio" name="filter" value="genre" /> Genre
       <input type="radio" name="filter" value="year" /> Year Released
-      <input type="radio" name="filter" value="author" /> Author
+      <input type="radio" name="filter" value="actor" /> Actor
       <br>
       
       Organize By:
@@ -197,9 +236,11 @@
       </select>
       
       <input type="submit" value="Go" name="submit" />
+      To view Shopping Cart:
+      <input type="submit" value="Click Here" name="addToCart"/>
     </form>
     <?php
-    //displayData("SELECT * FROM `movie` WHERE 1");
+    //displayData("SELECT * FROM `movie`, `celebrity` WHERE movie.movie_id=celebrity.celeb_id");
     submit();
     //displayData();
     ?>
